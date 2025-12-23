@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Search Students</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content search-page">
+      <h2>Search Students</h2>
+
+      <div class="search-card">
+        <div class="search-row">
+          <input type="text" id="searchName" placeholder="Search by Name" />
+          <button onclick="searchByName()">Search</button>
+        </div>
+
+        <hr />
+
+        <div class="search-row">
+          <input type="number" id="searchPrn" placeholder="Search by PRN" />
+          <button onclick="searchByPRN()">Search</button>
+        </div>
+      </div>
+
+      <div id="searchResults"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>View Students</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content">
+      <h2>All Students</h2>
+
+      <!-- FILTER & SORT CARD -->
+      <div class="card" id="filterCard">
+        <h3>Sort & Filter</h3>
+
+        <div class="filter-row">
+          <label for="sortBy">Sort By:</label>
+          <select id="sortBy">
+            <option value="">None</option>
+            <option value="name">Name (A–Z)</option>
+            <option value="prn">PRN (Low–High)</option>
+            <option value="year">Year (1–4)</option>
+            <option value="attendance">Attendance (%)</option>
+            <option value="average">Average Marks</option>
+          </select>
+        </div>
+
+        <div class="filter-row">
+          <label for="filterYear">Year:</label>
+          <select id="filterYear">
+            <option value="">All</option>
+            <option value="1">FY</option>
+            <option value="2">SY</option>
+            <option value="3">TY</option>
+            <option value="4">LY</option>
+          </select>
+        </div>
+
+        <div class="filter-row">
+          <label for="filterDivision">Division:</label>
+          <select id="filterDivision">
+            <option value="">All</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+          </select>
+        </div>
+
+        <div class="filter-row">
+          <label for="filterMinAttendance">Min Attendance %:</label>
+          <input type="number" id="filterMinAttendance" placeholder="e.g. 75" />
+        </div>
+
+        <div class="filter-row">
+          <label for="filterMinMarks">Min Average Marks:</label>
+          <input type="number" id="filterMinMarks" placeholder="e.g. 60" />
+        </div>
+
+        <div class="filter-actions">
+          <button type="button" id="applyFilters">Apply Filters</button>
+          <button type="button" id="resetFilters" class="secondary-btn">
+            Reset
+          </button>
+        </div>
+      </div>
+
+      <div id="undoBar" class="undo-hidden">
+        Student deleted.
+        <button onclick="undoDelete()">UNDO</button>
+      </div>
+
+      <!-- STUDENT CARDS -->
+      <div id="students"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

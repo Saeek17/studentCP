@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Attendance</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content">
+      <h2>Mark Attendance</h2>
+
+      <form id="attendanceForm">
+        <input
+          type="number"
+          id="a_prn"
+          placeholder="Enter PRN"
+          required
+        /><br />
+
+        <select id="a_present">
+          <option value="true">Present</option>
+          <option value="false">Absent</option></select
+        ><br />
+
+        <button type="submit">Update Attendance</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

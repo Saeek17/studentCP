@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Projects</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content">
+      <h2>Featured Projects</h2>
+
+      <div class="card" style="width: 450px">
+        <h3>Add New Project</h3>
+        <form id="projectForm">
+          <input
+            type="number"
+            id="projPrn"
+            placeholder="Enter Student PRN"
+            required
+          />
+
+          <input
+            type="text"
+            id="projTitle"
+            placeholder="Project Title"
+            required
+          />
+
+          <textarea
+            id="projDesc"
+            placeholder="Project Description"
+            rows="4"
+            style="
+              width: 100%;
+              padding: 10px;
+              border-radius: 8px;
+              border: 1px solid #ccc;
+              margin-top: 10px;
+            "
+          ></textarea>
+
+          <button type="submit">Add Project</button>
+        </form>
+      </div>
+
+      <h3>Recommended Projects</h3>
+      <div id="projectList"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

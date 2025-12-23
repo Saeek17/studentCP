@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Update Student</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content">
+      <h2>Update Student Details</h2>
+
+      <form id="updateForm">
+        <input type="text" id="u_name" placeholder="Full Name" required /><br />
+        <input
+          type="number"
+          id="u_rollno"
+          placeholder="Roll No"
+          required
+        /><br />
+        <input
+          type="text"
+          id="u_division"
+          placeholder="Division"
+          required
+        /><br />
+        <input type="number" id="u_year" placeholder="Year" required /><br />
+
+        <h3>Attendance</h3>
+        <input
+          type="number"
+          id="u_present"
+          placeholder="Classes Present"
+          required
+        /><br />
+        <input
+          type="number"
+          id="u_total"
+          placeholder="Total Classes"
+          required
+        /><br />
+
+        <h3>Marks</h3>
+        <input type="number" id="u_m1" placeholder="Subject 1" /><br />
+        <input type="number" id="u_m2" placeholder="Subject 2" /><br />
+        <input type="number" id="u_m3" placeholder="Subject 3" /><br />
+        <input type="number" id="u_m4" placeholder="Subject 4" /><br />
+        <input type="number" id="u_m5" placeholder="Subject 5" /><br />
+
+        <button type="submit">Save Changes</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Add Student</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- SIDEBAR -->
+    <div id="sidebar"></div>
+    <script>
+      if (localStorage.getItem("isAdmin") !== "true") {
+        window.location.href = "index.html";
+      }
+      fetch("sidebar.html")
+        .then((res) => res.text())
+        .then((html) => (document.getElementById("sidebar").innerHTML = html));
+    </script>
+
+    <div class="main-content">
+      <h2>Add New Student</h2>
+
+      <form id="studentForm">
+        <input type="text" id="name" placeholder="Full Name" required /><br />
+        <input type="number" id="prn" placeholder="PRN" required /><br />
+        <input type="number" id="rollno" placeholder="Roll No" required /><br />
+        <input
+          type="text"
+          id="division"
+          placeholder="Division"
+          required
+        /><br />
+        <input type="number" id="year" placeholder="Year" required /><br />
+
+        <h3>Attendance</h3>
+        <input
+          type="number"
+          id="present"
+          placeholder="Classes Present"
+          required
+        /><br />
+        <input
+          type="number"
+          id="total"
+          placeholder="Total Classes"
+          required
+        /><br />
+
+        <h3>Marks (optional)</h3>
+        <input type="number" id="m1" placeholder="Subject 1" /><br />
+        <input type="number" id="m2" placeholder="Subject 2" /><br />
+        <input type="number" id="m3" placeholder="Subject 3" /><br />
+        <input type="number" id="m4" placeholder="Subject 4" /><br />
+        <input type="number" id="m5" placeholder="Subject 5" /><br />
+
+        <button type="submit">Add Student</button>
+      </form>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
